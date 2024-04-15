@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Player</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .video-container {
+      position: relative;
+      max-width: 800px;
+      margin: 20px auto;
+    }
+
+    .controls {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    button {
+      margin: 0 10px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="video-container">
+    <video id="myVideo" controls>
+      <source src=" C:\Users\Mr_Moustafa\Downloads\Build Custom Video Player using HTML  CSS  and  JavaScript _ Web Development Project.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+      <button id="playPauseBtn">Play</button>
+      <button id="stopBtn">Stop</button>
+      <button id="fullScreenBtn">Full Screen</button>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const video = document.getElementById("myVideo");
+      const playPauseBtn = document.getElementById("playPauseBtn");
+      const stopBtn = document.getElementById("stopBtn");
+      const fullScreenBtn = document.getElementById("fullScreenBtn");
+
+      playPauseBtn.addEventListener("click", function() {
+        if (video.paused || video.ended) {
+          video.play();
+          playPauseBtn.textContent = "Pause";
+        } else {
+          video.pause();
+          playPauseBtn.textContent = "Play";
+        }
+      });
+
+      stopBtn.addEventListener("click", function() {
+        video.pause();
+        video.currentTime = 0;
+        playPauseBtn.textContent = "Play";
+      });
+
+      fullScreenBtn.addEventListener("click", function() {
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if (video.mozRequestFullScreen) {
+          video.mozRequestFullScreen();
+        } else if (video.webkitRequestFullscreen) {
+          video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) {
+          video.msRequestFullscreen();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
